@@ -1,0 +1,15 @@
+@import "bootstrap";
+@import "static_pages";
+
+.alert{
+  color: white;
+  margin-top: 20px;
+}
+
+.alert-notice {
+  background-color: green;
+}
+
+.alert-danger {
+  background-color: red;
+}

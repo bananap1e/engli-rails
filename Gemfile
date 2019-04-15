@@ -24,6 +24,7 @@ gem 'spring-watcher-listen', '~> 2.0.0'
 gem 'web-console', group: :development
 
 #Bootstrap gems
+gem 'bootstrap', '~> 4.3.1'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass'
