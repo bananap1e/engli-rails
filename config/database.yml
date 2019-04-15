@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  user: admin
+  pool: 5
+
+development:
+  <<: *default
+  database: rails_engli
+
+test:
+  <<: *default
+  database: rails-engli
+
+production:
+  <<: *default
+  database: rails-engli
+  username: admin
+  password: qwerty123
