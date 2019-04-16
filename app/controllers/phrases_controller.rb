@@ -1,5 +1,5 @@
 class PhrasesController < ApplicationController
-  before_action :normalize_params, only: [:edit, :create]
+  before_action :category_param, only: [:edit, :create]
 
   def index
     @phrases = Phrase.all
@@ -22,7 +22,7 @@ class PhrasesController < ApplicationController
 
   private
 
-  def normalize_params
+  def category_param
     params[:phrase][:category] = params[:phrase][:category].to_i
   end
 
