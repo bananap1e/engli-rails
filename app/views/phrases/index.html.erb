@@ -1,0 +1,13 @@
+<h1>Listing phrases</h1>
+
+<table class='phrase-table'>
+  <tr>
+    <td>ID</td>
+    <td>Phrase</td>
+    <td>Translation</td>
+  </tr>
+
+<% @phrases.each do |phrase| %>
+  <%= render phrase %>
+<% end %>
+</table>
