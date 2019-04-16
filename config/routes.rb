@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'phrases#index', as: :root_path
+  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  root to: 'phrases#index', as: :root
 
-  resources :phrases
+  resources :phrases, only: [:new, :create]
+  resources :users
 
 end
