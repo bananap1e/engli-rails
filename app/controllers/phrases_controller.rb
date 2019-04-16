@@ -1,5 +1,5 @@
 class PhrasesController < ApplicationController
-  before_action :category_param, only: [:edit, :create]
+  before_action :category_param, only: [:create]
 
   def index
     @phrases = Phrase.all
