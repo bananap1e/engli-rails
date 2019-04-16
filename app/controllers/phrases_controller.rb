@@ -1,23 +1,44 @@
 class PhrasesController < ApplicationController
-  before_action :category_param, only: [:create]
+  before_action :category_param, only: [:create, :update]
+  before_action :set_phrase!, only: [:edit, :update, :destroy]
+  before_action :check_user!, only: [:edit, :update, :destroy]
 
   def index
-    @phrases = Phrase.paginate(:page => params[:page])
+    @phrases = Phrase.includes(:user).paginate(:page => params[:page])
   end
 
   def new
    @phrase = Phrase.new()
   end
 
+  def edit
+  end
+
+  def update
+    if @phrase.update_attributes(phrase_params)
+      flash[:notice] = 'Phrase has been updated!'
+      redirect_to user_path(@phrase.user)
+    else
+      flash[:danger] = @phrase.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
   def create
-    @phrase = Phrase.new(phrase_params)
+    @phrase = current_user.phrases.new(phrase_params)
     if @phrase.save
       flash[:notice] = 'Phrase has been created!'
-      redirect_to phrases_path
+      redirect_to root_path
     else
       flash[:danger] = @phrase.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def destroy
+    @phrase.destroy
+    flash[:notice] = 'Phrase has been deleted!'
+    redirect_to user_path(@phrase.user)
   end
 
   private
@@ -28,6 +49,17 @@ class PhrasesController < ApplicationController
 
   def phrase_params
     params.require(:phrase).permit(:phrase, :translation, :category)
+  end
+
+  def set_phrase!
+    @phrase = Phrase.find_by(id: params[:id])
+  end
+
+  def check_user!
+    unless @phrase.author? current_user
+      flash[:danger] = 'You are not a phrase author'
+      redirect_to(:back)
+    end
   end
 
 end
