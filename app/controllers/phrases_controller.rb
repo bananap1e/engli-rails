@@ -1,4 +1,6 @@
 class PhrasesController < ApplicationController
+  before_action :normalize_params, only: [:edit, :create]
+
   def index
     @phrases = Phrase.all
   end
@@ -20,7 +22,12 @@ class PhrasesController < ApplicationController
 
   private
 
-  def phrase_params
-    params.require(:phrase).permit(:phrase, :translation)
+  def normalize_params
+    params[:phrase][:category] = params[:phrase][:category].to_i
   end
+
+  def phrase_params
+    params.require(:phrase).permit(:phrase, :translation, :category)
+  end
+
 end
