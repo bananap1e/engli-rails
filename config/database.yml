@@ -2,11 +2,12 @@ default: &default
   adapter: postgresql
   encoding: unicode
   user: admin
+  password: qwerty123
   pool: 5
 
 development:
   <<: *default
-  database: rails_engli
+  database: rails-engli
 
 test:
   <<: *default
