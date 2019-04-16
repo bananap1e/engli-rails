@@ -2,7 +2,7 @@ class PhrasesController < ApplicationController
   before_action :category_param, only: [:create]
 
   def index
-    @phrases = Phrase.all
+    @phrases = Phrase.paginate(:page => params[:page])
   end
 
   def new
