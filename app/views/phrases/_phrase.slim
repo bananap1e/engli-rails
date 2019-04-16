@@ -3,3 +3,10 @@ tr
   td = phrase.phrase
   td = phrase.translation
   td = phrase.category
+  td
+    - if phrase.author? current_user
+      = link_to 'edit', edit_phrase_path(phrase), class: 'edit_phrase_link'
+      '  /
+      = link_to 'delete', phrase, class: 'delete_phrase', method: :delete
+    - else
+      = link_to phrase.user.username, user_path(phrase.user)
