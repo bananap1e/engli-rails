@@ -6,7 +6,7 @@ def show
 end
 
 def index
-  @users = User.paginate(:page => params[:page])
+  @users = User.order(carma: :desc).paginate(:page => params[:page])
 end
 
 end

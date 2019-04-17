@@ -1,5 +1,5 @@
 class PhrasesController < ApplicationController
-  before_action :set_phrase!, only: [:edit, :update, :destroy, :show]
+  before_action :set_phrase!, only: [:edit, :update, :destroy, :show, :vote]
   before_action :category_param, only: [:create, :update]
   before_action :check_user!, only: [:edit, :update, :destroy]
   before_action :check_user_before_example_deletion!, only: [:delete_example]
@@ -59,6 +59,11 @@ class PhrasesController < ApplicationController
     redirect_to user_path(@phrase.user)
   end
 
+  def vote
+    shared_vote(@phrase)
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def category_param
@@ -76,7 +81,7 @@ class PhrasesController < ApplicationController
   def check_user!
     unless @phrase.is_author? current_user
       flash[:danger] = 'You are not a phrase author'
-      redirect_to(:back)
+      redirect_back(fallback_location: root_path)
     end
   end
 
