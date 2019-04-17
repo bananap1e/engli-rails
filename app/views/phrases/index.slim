@@ -1,12 +1,13 @@
 h1 Listing phrases
 
-table.table
+table.table-stripped
   tr
     th Id
     th Phrase
     th Translation
     th Category
     th Author
+    th Votes
 
   - @phrases.each do |phrase|
     = render phrase, author: true

@@ -4,7 +4,7 @@
       h1 Username: #{@user.username}
 
       h3 User Phrases
-      table.table
+      table.table.table-stripped
         tr
           th Id
           th Phrase
@@ -14,6 +14,6 @@
             th Actions
           - else
             th Author
-
+          th Votes
         - @phrases.each do |phrase|
           = render phrase, author: true
