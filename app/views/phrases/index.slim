@@ -1,19 +1,23 @@
-h1 Listing phrases
+div.poslewapki
+  h1.listing Listing phrases
+  a href="phrases/new"
+    button.btn.btn-primary.new-phrase style="float: right;" New phrase
+    br
 
-table.table-stripped
-  tr
-    th Id
-    th Phrase
-    th Translation
-    th Category
-    th Author
-    th Votes
+
+table.table
+  thead.wapka
+    tr
+      th class="col" #
+      th class="col" Phrase
+      th class="col" Translation
+      th class="col" Categoty
+      th class="col" Author
+      th class="col" Votes
+
 
   - @phrases.each do |phrase|
     = render phrase, author: true
 
-
 .text-center
-  = will_paginate @phrases, renderer: BootstrapPagination::Rails 
-
-= link_to 'Add new phrase', new_phrase_path
+  = will_paginate @phrases, renderer: BootstrapPagination::Rails
