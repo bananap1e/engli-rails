@@ -1,6 +1,7 @@
 class Phrase < ApplicationRecord
   include IsAuthorMethod
   extend FriendlyId
+  include PublicActivity::Model
 
   CATEGORIES = [['Actions', 0], ['Time', 1], ['Productivity', 2], ['Apologies', 3], ['Common', 4]]
 
