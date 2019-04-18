@@ -3,16 +3,13 @@ tr
   td = link_to phrase.phrase, phrase_path(phrase)
   td = phrase.translation
   td = phrase.category
-  - if author
-    td = link_to phrase.user.username, user_path(phrase.user)
-  - else
+  - if phrase.is_author? current_user
     td
-      - if phrase.is_author? current_user
-        = link_to 'edit', edit_phrase_path(phrase), class: 'edit_phrase_link'
-        '  /
-        = link_to 'delete', phrase, class: 'delete_phrase', method: :delete
-      - else
-        -
+      = link_to 'edit', edit_phrase_path(phrase), class: 'edit_phrase_link'
+      '  /
+      = link_to 'delete', phrase, class: 'delete_phrase', method: :delete
+  - else
+    td = link_to phrase.user.username, user_path(phrase.user)
   td
     = link_to vote_phrase_path(phrase, vote: 'up'), method: :post do
       div

@@ -28,7 +28,8 @@ gem 'spring'
 gem 'spring-watcher-listen', '~> 2.0.0'
 
 group :test do
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'rspec-collection_matchers'
   gem 'factory_bot_rails'
   gem 'faker'
