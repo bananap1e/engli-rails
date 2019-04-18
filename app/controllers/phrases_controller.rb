@@ -56,7 +56,7 @@ class PhrasesController < ApplicationController
   def destroy
     @phrase.destroy
     flash[:notice] = 'Phrase has been deleted!'
-    redirect_to user_path(@phrase.user)
+    redirect_to root_path
   end
 
   def vote

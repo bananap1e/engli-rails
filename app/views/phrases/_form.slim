@@ -1,5 +1,4 @@
 = form_for(@phrase) do |f|
-  h1 Create Phrase
   .form-group
     = f.label :phrase
     br
@@ -16,11 +15,11 @@
     = f.select :category, Phrase::CATEGORIES, {}, { :class => 'form-control' }
 
     - if @phrase.id.nil?
-      = f.fields_for :examples do |example|
+      = f.fields_for :example do |examples|
         .form-group
-          = example.label :example
+          = examples.label :example
           br
-          = example.text_field :example, :class => 'form-control'
-          = example.hidden_field :user_id, :class => 'form-control'
+          = examples.text_field :example, :class => 'form-control'
+          = examples.hidden_field :user_id, :class => 'form-control'
 
   = f.submit 'Submit', :class => 'btn btn-primary'

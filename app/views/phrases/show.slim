@@ -36,6 +36,5 @@ h1 Phrase #{@phrase.phrase}
         - @examples.each do |example|
           = render example
 
-
       .text-center
         = will_paginate @examples, renderer: BootstrapPagination::Rails

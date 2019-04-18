@@ -12,6 +12,7 @@ gem 'launchy'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'capybara'
 
 # Other languages
 gem 'jquery-rails'
@@ -26,12 +27,13 @@ gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'spring'
 gem 'spring-watcher-listen', '~> 2.0.0'
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.8'
-  gem 'factory_girl_rails'
+group :test do
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-collection_matchers'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'database_cleaner'
-  gem 'capybara'
 end
 
 # Bootstrap gems

@@ -12,8 +12,9 @@ class Phrase < ApplicationRecord
   friendly_id :phrase, use: :slugged
   acts_as_votable
 
-  validates :translation, :phrase, presence: true
-  validates :category, inclusion: {
+  validates :phrase, uniqueness: true
+  validates :translation, :phrase, :user_id, presence: true
+  validates :category, presence: true, inclusion: {
       in: %w(Actions Time Productivity Apologies Common),
       message: "%{value} is not a valid category"
       }
