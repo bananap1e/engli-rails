@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'spec_helper'
 
@@ -10,19 +12,19 @@ describe 'Phrase' do
     it { should respond_to(:category) }
   end
   context 'is valid?' do
-    describe "when attribute is invalid" do
-      it "fails validation with phrase" do
+    describe 'when attribute is invalid' do
+      it 'fails validation with phrase' do
         phrase.phrase = nil
         expect(phrase).to have(1).error_on(:phrase)
       end
-      it "fails validation with translation" do
+      it 'fails validation with translation' do
         phrase.translation = nil
         expect(phrase).to have(1).error_on(:translation)
       end
-      it "fails validation with category" do
+      it 'fails validation with category' do
         phrase.category = nil
         expect(phrase).to have(1).error_on(:category)
       end
     end
   end
-end 
+end

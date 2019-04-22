@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class Phrase < ApplicationRecord
   include IsAuthorMethod
   extend FriendlyId
   include PublicActivity::Model
 
-  CATEGORIES = [['Actions', 0], ['Time', 1], ['Productivity', 2], ['Apologies', 3], ['Common', 4]]
+  CATEGORIES = [['Actions', 0], ['Time', 1], ['Productivity', 2], ['Apologies', 3], ['Common', 4]].freeze
 
   belongs_to :user
   has_many   :examples
@@ -15,9 +17,8 @@ class Phrase < ApplicationRecord
   validates :phrase, uniqueness: true
   validates :translation, :phrase, :user_id, presence: true
   validates :category, presence: true, inclusion: {
-      in: %w(Actions Time Productivity Apologies Common),
-      message: "%{value} is not a valid category"
-      }
-  enum category: %w(Actions Time Productivity Apologies Common)
-
+    in: %w[Actions Time Productivity Apologies Common],
+    message: '%{value} is not a valid category'
+  }
+  enum category: %w[Actions Time Productivity Apologies Common]
 end

@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { registrations: 'users/registrations' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   root to: 'phrases#index', as: :root
 
   resources :phrases do
     member do
       post :vote
     end
-    resources :examples, only: [:create, :destroy] do
+    resources :examples, only: %i[create destroy] do
       post :vote
     end
   end
@@ -17,6 +19,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:index, :show]
-
+  resources :users, only: %i[index show]
 end

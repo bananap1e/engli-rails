@@ -1,8 +1,8 @@
-class ExamplesController < ApplicationController
-  before_action :set_phrase!, only: [:create, :destroy]
-  before_action :set_phrase!, only: [:create, :destroy, :vote]
-  before_action :set_example!, only: [:destroy, :vote]
+# frozen_string_literal: true
 
+class ExamplesController < ApplicationController
+  before_action :set_phrase!, only: %i[create destroy vote]
+  before_action :set_example!, only: %i[destroy vote]
 
   def create
     @example = @phrase.examples.new(example_params)
@@ -15,7 +15,7 @@ class ExamplesController < ApplicationController
   end
 
   def destroy
-    @phrase.examples.find_by(id: params[:id]).destroy
+    @example.destroy
     flash[:notice] = 'Example has been deleted!'
     redirect_to phrase_path(@phrase)
   end
@@ -38,5 +38,4 @@ class ExamplesController < ApplicationController
   def set_example!
     @example = @phrase.examples.find_by(id: params[:example_id])
   end
-
 end

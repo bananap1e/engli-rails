@@ -1,10 +1,11 @@
-FactoryBot.define do
+# frozen_string_literal: true
 
+FactoryBot.define do
   factory :user do
     email                   { Faker::Internet.email }
     username                { Faker::Internet.user_name }
-    password                { "qwerty123" }
-    password_confirmation   { "qwerty123" }
+    password                { 'qwerty123' }
+    password_confirmation   { 'qwerty123' }
   end
 
   factory :phrase do
@@ -16,7 +17,6 @@ FactoryBot.define do
   factory :example do
     user
     phrase
-    example                 { Faker::WorldCup.team }
+    example { Faker::WorldCup.team }
   end
-
 end

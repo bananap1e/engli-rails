@@ -1,25 +1,27 @@
+# frozen_string_literal: true
+
 class PhrasesController < ApplicationController
-  before_action :set_phrase!, only: [:edit, :update, :destroy, :show, :vote]
-  before_action :category_param, only: [:create, :update]
-  before_action :check_user!, only: [:edit, :update, :destroy]
-  before_action :check_user_before_example_deletion!, only: [:delete_example]
+  before_action :set_phrase!, only: %i[edit update destroy show vote]
+  before_action :category_param, only: %i[create update]
+  before_action :check_user!, only: %i[edit update destroy]
+  before_action :check_user_before_example_deletion!, only: :delete_example
 
   def index
-    @phrases = Phrase.includes(:user).paginate(:page => params[:page])
+    @phrases = Phrase.includes(:user).paginate(page: params[:page])
   end
 
   def new
-   @phrase = Phrase.new
-   @phrase.examples.build(:user_id => current_user.id)
+    @phrase = Phrase.new
+    @phrase.examples.build(user_id: current_user.id)
   end
 
   def show
-    @examples = @phrase.examples.includes(:user).paginate(:page => params[:page])
-    @example = @phrase.examples.build(:user_id => current_user.id)
+    @examples = @phrase.examples.includes(:user).paginate(page: params[:page])
+    @example = @phrase.examples.build(user_id: current_user.id)
   end
 
   def edit
-    @phrases = Phrase.includes(:user).paginate(:page => params[:page])
+    @phrases = Phrase.includes(:user).paginate(page: params[:page])
   end
 
   def update
@@ -71,7 +73,7 @@ class PhrasesController < ApplicationController
   end
 
   def phrase_params
-    params.require(:phrase).permit(:phrase, :translation, :category, examples_attributes: [ :example, :user_id, :_destroy ])
+    params.require(:phrase).permit(:phrase, :translation, :category, examples_attributes: %i[example user_id _destroy])
   end
 
   def set_phrase!
@@ -84,5 +86,4 @@ class PhrasesController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
-
 end

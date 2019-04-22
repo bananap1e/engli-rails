@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include PublicActivity::Model
 
@@ -10,7 +12,6 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   def has_new_notifications?
-    PublicActivity::Activity.where(recipient_id: self.id, readed: false).any?
+    PublicActivity::Activity.where(recipient_id: id, readed: false).any?
   end
-
 end

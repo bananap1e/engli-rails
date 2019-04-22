@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'spec_helper'
 
@@ -10,16 +12,16 @@ describe 'Example' do
     it { should respond_to(:user_id) }
   end
   context 'is valid?' do
-    describe "when attribute is invalid" do
-      it "fails validation with example" do
+    describe 'when attribute is invalid' do
+      it 'fails validation with example' do
         example.example = nil
         expect(example).to have(1).error_on(:example)
       end
-      it "fails validation with phrase id" do
+      it 'fails validation with phrase id' do
         example.phrase_id = nil
         expect(example).to have(1).error_on(:phrase_id)
       end
-      it "fails validation with user_id" do
+      it 'fails validation with user_id' do
         example.user_id = nil
         expect(example).to have(1).error_on(:user_id)
       end

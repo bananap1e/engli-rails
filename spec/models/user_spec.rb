@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'spec_helper'
 
@@ -10,12 +12,12 @@ describe 'User' do
   end
   context 'is valid?' do
     it { should be_valid }
-    describe "when attribute is invalid" do
-      it "fails validation with username" do
+    describe 'when attribute is invalid' do
+      it 'fails validation with username' do
         user.username = nil
         expect(user).to have(1).error_on(:username)
       end
-      it "fails validation with email" do
+      it 'fails validation with email' do
         user.email = 'kek'
         expect(user).to have(1).error_on(:email)
       end
